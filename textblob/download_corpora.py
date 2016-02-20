@@ -27,7 +27,19 @@ ADDITIONAL_CORPORA = [
     'movie_reviews',  # Required for NaiveBayesAnalyzer
 ]
 
-ALL_CORPORA = MIN_CORPORA + ADDITIONAL_CORPORA
+PORTUGUESE_COOPORA = [
+    'floresta',
+    'mac_morpho'
+    'machado'
+]
+
+ALL_CORPORA = MIN_CORPORA + ADDITIONAL_CORPORA + PORTUGUESE_COOPORA
+
+
+def download_pt():
+    for each in PORTUGUESE_COOPORA:
+        nltk.download(each)
+
 
 def download_lite():
     for each in MIN_CORPORA:
@@ -42,6 +54,8 @@ def download_all():
 def main():
     if 'lite' in sys.argv:
         download_lite()
+    elif 'pt' in sys.argv:
+        download_pt()
     else:
         download_all()
     print("Finished.")
